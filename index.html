@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -250px;
+            margin-left: -250px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500" id="myCanvas">
+    <script>
+        var myCanvas = document.getElementById("myCanvas");
+        //获取画笔
+        var ctx = myCanvas.getContext('2d');
+        //画笔的颜色 宽度
+        ctx.strokeStyle = "#0ff";
+        ctx.lineWidth = 17;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#0ff";
+
+        function readerTime() {
+            //获取当前时间
+            var date = new Date();
+            var today = date.toDateString();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var ms = date.getMilliseconds();
+
+            var rs = s + ms / 1000;
+            // console.log(h, m);
+            // 背景 圆弧（ 时分秒） 文字时间日期
+            grandint = ctx.createRadialGradient(250, 250, 5, 250, 250, 300); //渐变
+            //规定渐变颜色
+            grandint.addColorStop(0, '#03303a');
+            grandint.addColorStop(1, '#000');
+            ctx.fillStyle = grandint;
+            ctx.fillRect(0, 0, 500, 500);
+            //时针
+            ctx.beginPath();
+            ctx.arc(250, 250, 200, deg(270), deg((h * 30) - 90));
+            ctx.stroke();
+            //分针
+            ctx.beginPath();
+            ctx.arc(250, 250, 170, deg(270), deg((m * 6) - 90));
+            ctx.stroke();
+            //秒针
+            ctx.beginPath();
+            ctx.arc(250, 250, 140, deg(270), deg((rs * 6) - 90));
+            ctx.stroke();
+            //日期
+            ctx.font = '25px Helvetice';
+            ctx.fillStyle = '#008c8c';
+            ctx.fillText(today, 145, 250);
+            //时间
+            ctx.font = '25px Helvetice';
+            ctx.fillStyle = '#008c8c';
+            //取后两位
+            var h = ('0' + h).slice(-2);
+            var m = ('0' + m).slice(-2);
+            var s = ('0' + s).slice(-2);
+            ctx.fillText(h + ':' + m + ':' + s + ':' + ms, 170, 300);
+        }
+        //动画
+        setInterval(readerTime, 40);
+        //角度转换弧度
+        function deg(deg) {
+            var f = Math.PI / 180;
+            return deg * f;
+        }
+    </script>
+</body>
+
+</html>
