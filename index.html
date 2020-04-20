@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>canvas实现旋转时钟</title>
+    <link rel="stylesheet" href="./css/common.css">
     <style>
         canvas {
             border: 1px solid black;
@@ -18,7 +19,15 @@
 </head>
 
 <body>
+    <div class="wrapper">
+        <div class="btn">
+
+            <a href="./index2.html">原生js实现时钟</a>
+        </div>
+    </div>
     <canvas width="500" height="500" id="myCanvas">
+        
+
     <script>
         var myCanvas = document.getElementById("myCanvas");
         //获取画笔
